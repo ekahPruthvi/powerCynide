@@ -80,16 +80,16 @@ fn build_ui(app: &Application) {
         }
 
         button:hover {
-            background: rgba(228, 228, 228, 0.49);
+            background: rgba(228, 228, 228, 0.1);
             transform: scale(1.1);
             font-weight: 800;
-            color: black;
         }
 
         #buttonsbox {
             min-height: 30px;
             padding: 10px;
             padding-right: 15px; 
+            padding-left: 15px;
             border-radius: 50px;
             background: rgba(0, 0, 0, 0.25);
             border: 0.5px solid rgba(255, 255, 255, 0.18);
