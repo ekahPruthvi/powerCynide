@@ -99,6 +99,7 @@ fn build_ui(app: &Application) {
             font-size: 30px;
             font-weight: 700;
             text-shadow: black 1px 0 3px;
+            color: rgba(255, 255, 255, 0.75);
         }
 
     ",
