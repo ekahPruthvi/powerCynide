@@ -36,7 +36,7 @@ fn build_ui(app: &Application) {
     css.load_from_data(
         "
         window {
-            background-color: rgba(20, 20, 20, 0.49);
+            background-color: rgba(20, 20, 20, 0);
         }
         scale {
             all:unset;
@@ -94,6 +94,13 @@ fn build_ui(app: &Application) {
             background: rgba(0, 0, 0, 0.25);
             border: 0.5px solid rgba(255, 255, 255, 0.18);
         }
+
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            text-shadow: black 1px 0 3px;
+        }
+
     ",
     );
 
@@ -114,7 +121,7 @@ fn build_ui(app: &Application) {
 
     // Slide label
     let slide_label = Label::new(Some("Slide to Shutdown"));
-    slide_label.set_css_classes(&["title-1"]);
+    slide_label.set_css_classes(&["title"]);
     slide_label.set_halign(gtk4::Align::Start);
     slide_label.set_margin_start(40);
 
