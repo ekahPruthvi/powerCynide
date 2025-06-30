@@ -136,6 +136,9 @@ fn build_ui(app: &Application) {
     let scale_clone = scale.clone();
     scale.connect_value_changed(move |s| {
         if s.value() >= 100.0 {
+            let _ = std::process::Command::new("pamixer")
+                .args(["--set-volume", "80"])
+                .status();
             shutdown_computer();
         }
     });
@@ -153,10 +156,16 @@ fn build_ui(app: &Application) {
     close_btn.set_css_classes(&["x"]);
 
     restart_btn.connect_clicked(|_| {
+        let _ = std::process::Command::new("pamixer")
+            .args(["--set-volume", "80"])
+            .status();
         restart_computer();
     });
 
     logout_btn.connect_clicked(|_| {
+        let _ = std::process::Command::new("pamixer")
+            .args(["--set-volume", "80"])
+            .status();
         logout_session();
     });
 
