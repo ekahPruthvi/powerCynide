@@ -95,6 +95,29 @@ fn build_ui(app: &Application) {
             border: 0.5px solid rgba(255, 255, 255, 0.18);
         }
 
+        .shadows {
+            min-height: 30px;
+            padding: 10px;
+            padding-right: 15px; 
+            padding-left: 15px;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.25);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
         .title {
             font-size: 30px;
             font-weight: 700;
@@ -183,7 +206,37 @@ fn build_ui(app: &Application) {
     vbox.append(&hbox);
     window.set_child(Some(&vbox));
 
+
+    let shadow = ApplicationWindow::new(app);
+    shadow.init_layer_shell();
+    shadow.set_layer(Layer::Overlay);
+    shadow.auto_exclusive_zone_enable();
+    shadow.fullscreen();
+    shadow.set_decorated(false);
+    shadow.set_namespace(Some("powershadow"));
+
+    for (edge, anchor) in [
+        (Edge::Left, true),
+        (Edge::Right, true),
+        (Edge::Top, true),
+        (Edge::Bottom, true),
+    ] {
+        shadow.set_anchor(edge, anchor);
+    }
+
+    let shodow_box = GtkBox::new(Orientation::Horizontal, 0);
+    shodow_box.append(&Label::new(Some("This is supposed to be invisible")));
+    shodow_box.set_css_classes(&["shadows"]);
+    shodow_box.set_halign(gtk4::Align::Center);
+    shodow_box.set_valign(gtk4::Align::Center);
+    shodow_box.set_size_request(854, 95);
+    shodow_box.set_margin_top(55);
+
+    shadow.set_child(Some(&shodow_box));
+    shadow.show();
+
     window.show();
+
 }
 
 // You can replace these with real commands (e.g., using `std::process::Command`)
