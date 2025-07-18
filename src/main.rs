@@ -96,6 +96,7 @@ fn build_ui(app: &Application) {
         }
 
         .shadows {
+            color: rgba(0, 0, 0, 0);
             min-height: 30px;
             padding: 10px;
             padding-right: 15px; 
@@ -158,10 +159,10 @@ fn build_ui(app: &Application) {
 
     let scale_clone = scale.clone();
     scale.connect_value_changed(move |s| {
+        let _ = std::process::Command::new("pamixer")
+            .args(["--set-volume", "80"])
+            .status();
         if s.value() >= 100.0 {
-            let _ = std::process::Command::new("pamixer")
-                .args(["--set-volume", "80"])
-                .status();
             shutdown_computer();
         }
     });
