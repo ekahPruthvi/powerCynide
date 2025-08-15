@@ -6,7 +6,7 @@ use std::process::exit;
 
 fn main() {
     let app = Application::builder()
-        .application_id("com.example.shutdownscreen")
+        .application_id("ekah.scu.powercynide")
         .build();
 
     app.connect_activate(build_ui);
