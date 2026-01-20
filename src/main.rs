@@ -257,7 +257,7 @@ fn restart_computer() {
 
 fn logout_session() {
     std::process::Command::new("niri")
-        .args(["msg", "action", "quit"])
+        .args(["msg", "action", "quit", "-s"])
         .spawn()
         .expect("Failed to logout");
 }
