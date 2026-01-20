@@ -36,7 +36,7 @@ fn build_ui(app: &Application) {
     css.load_from_data(
         "
         window {
-            background-color: rgba(20, 20, 20, 0);
+            background-color: rgba(20, 20, 20, 0.14);
         }
         scale {
             all:unset;
@@ -91,7 +91,7 @@ fn build_ui(app: &Application) {
             padding-right: 15px; 
             padding-left: 15px;
             border-radius: 50px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(33, 33, 33, 1);
             border: 0.5px solid rgba(255, 255, 255, 0.18);
         }
 
@@ -121,8 +121,8 @@ fn build_ui(app: &Application) {
 
         .title {
             font-size: 30px;
-            font-weight: 700;
-            text-shadow: black 1px 0 3px;
+            font-weight: 400;
+            text-shadow: black 0px 0px 30px;
             color: rgba(255, 255, 255, 0.75);
         }
 
@@ -256,8 +256,8 @@ fn restart_computer() {
 }
 
 fn logout_session() {
-    std::process::Command::new("hyprctl")
-        .args(["dispatch", "exit", "0"])
+    std::process::Command::new("niri")
+        .args(["msg", "action", "quit"])
         .spawn()
         .expect("Failed to logout");
 }
